@@ -10,7 +10,7 @@ Unfortunatly I didn't have enough time to write a proper documentation, but the 
 As for all Ansible modules, to use 'neighbour_command' in an Ansible script, you should create a folder 'library' in the same directory as your script, and the file 'neighbour_command.py' in it.  
 For example, to run 'complete_test.yml', you should have the following folder's topology :
 
-/------------------------------------
+/------------------------------------          
 MainFolder/                         |  
 | --> library/                      |  
 |     | --> neighbour_command.py    |   
