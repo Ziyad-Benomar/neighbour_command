@@ -12,9 +12,9 @@ For example, to run 'complete_test.yml', you should have the following folder's 
 
 /-----------------------------------------------          
 MainFolder/                         
-| --> library/                        
-|     | --> neighbour_command.py       
-| --> complete_test.yml                  
+||--> library/                        
+|||||||| --> neighbour_command.py       
+||--> complete_test.yml                  
 \-----------------------------------------------     
 
 ## Detailed description
