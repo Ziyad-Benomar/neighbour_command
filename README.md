@@ -11,10 +11,10 @@ As for all Ansible modules, to use 'neighbour_command' in an Ansible script, you
 For example, to run 'complete_test.yml', you should have the following folder's topology :
 
 /------------------------------------          
-MainFolder/                         |  
-| --> library/                      |  
-|     | --> neighbour_command.py    |   
-| --> complete_test.yml             |     
+MainFolder/                         
+| --> library/                        
+|     | --> neighbour_command.py       
+| --> complete_test.yml                  
 \------------------------------------     
 
 ## Detailed description
