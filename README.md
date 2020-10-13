@@ -1,5 +1,5 @@
 # neighbour_command
-An ansible module written with python, that allows to run commands on a neighbour remote machine, reachable via ssh or telnet  
+An ansible module written in python, that allows to run commands on a neighbour remote machine, reachable via ssh or telnet  
 short_description: Sends commands from a server to switchs that are connected to it.  
 
 The host for this module must be a Unix like system (MacOS, Linux) having Python installed.  
