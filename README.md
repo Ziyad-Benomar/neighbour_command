@@ -7,6 +7,15 @@ It also must have the libraries Paramiko and Telnet installed.
 
 Unfortunatly I didn't have enough time to write a proper documentation, but the file "test.yml" and the following description should give you a good example of the main use cases of this module.  
 
+As for all Ansible modules, to use 'neighbour_command' in an Ansible script, you should create a folder 'library' in the same directory as your script, and the file 'neighbour_command.py' in it.  
+For example, to run 'complete_test.yml', you should have the following folder's topology :
+
+/------------------------------------
+MainFolder/                         |  
+| --> library/                      |  
+|     | --> neighbour_command.py    |   
+| --> complete_test.yml             |     
+\------------------------------------     
 
 ## Detailed description
 During my summer internship at Wifirst, I had to write Ansible playbooks to automate tasks on different equipment (switches, computers, servers).  
