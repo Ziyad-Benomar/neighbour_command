@@ -1,0 +1,92 @@
+-
+  hosts: all
+  name: TEST NEIGHBOUR_COMMAND
+  gather_facts: no
+  tasks:
+   - name: run commands on neighbour
+     neighbour_command_version0:
+       # The variable 'provider' contains information about the neighbour machine we'll act on
+       provider:
+         # host is simply its IP address
+         host: "10.264.17.159"
+         # Give here the different username/password you want to test
+         test_credentials:
+            - username: 'username'
+              password: 'password'
+            - username: 'another_username'
+              password: 'another_password'
+         #You can specify the connection method : ssh or telnet. but it is not required
+         #If you don't define the variable 'connection_method', then both methods will be tested
+         connection_method: "ssh"
+         #port and connection_timeout are not required
+         port: 22
+         connection_timeout: 10
+       # 'command_timeout' and 'reboot_timeout' are not required neither
+       command_timeout: 120
+       reboot_timeout: 120
+       commands: # not required, default = [], all the commands in this list will be executed
+         # The following command are specific to cisco switchs, and tey are used only to illustrate 
+         # what one can do with this module
+         
+         #  testing a simple str command 
+         - show inventory
+
+         # testing a simple str command
+         - run: show version
+
+         # testing an str command that has no output
+         - terminal prompt
+         
+         # testing a command and expect a prompt message  
+         - run: write
+           expect: '(Y/N)'
+           answer: 'n'
+         
+         - run: write
+           expect: 
+             - '(Y/N)'
+           answer: 'n'
+         
+         # testing a command and expect multiple successive prompt messages
+         - run: show vlan
+           expect:
+            - More
+            - More
+           answer:
+           - ' '
+           - q
+        
+         # testing a commands with loop (expect, answer) : while we get the message 'More' we answer ' ' (space)
+         - run: show vlan
+           expect: 'More'
+           answer: ' '
+           loop: yes
+
+         # this command works even if (Y/N) is never displayed, because we added the option loop
+         - run: show inventory
+           expect: (Y/N)
+           answer: y
+           loop: yes
+         
+         # test reboot with dict command
+         - run: reload
+           expect: (Y/N)
+           answer: 'y'
+           loop: yes
+           will_reboot: true
+
+         # test reboot with str command
+         - terminal no prompt
+         - run: reload
+           will_reboot: yes
+
+     ignore_errors: yes
+     register: output
+
+     # The output has two main attributes : output.stdout (output of the commands that were executed correctly), and output.stderr (errors)
+   - name: OUTPUT
+     debug: var=output.stdout
+   - name: ERRORS
+     debug: var=output.stderr
+
+
